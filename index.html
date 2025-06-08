@@ -21,22 +21,25 @@
       padding-top: 25%;
       direction: rtl;
     }
-
-  
+    #menuFrame {
+  display:none;
+  }
   </style>
 
   <script>
-   PDFObject.embed("menu.pdf", "#menuFrame", {
-  pdfOpenParams: {
-    view: "FitH"
-  }
-});
-    
     window.onload = function () {
+      // إخفاء شاشة الترحيب
       setTimeout(() => {
-        document.getElementById('welcome').style.display = 'none';
-      
+        document.getElementById('welcome').style.display = 'none'
+        document.getElementById('menuFrame').style.display = 'block';
       }, 1500);
+
+      // تضمين PDF
+      PDFObject.embed("http://spacenll.github.io/menu-cafe/menu.pdf", "#menuFrame", {
+        pdfOpenParams: {
+          view: "FitH"
+        }
+      });
     };
   </script>
 </head>
@@ -48,8 +51,7 @@
     <p>Welcome to Khashab Cafe</p>
   </div>
 
-  <!--<iframe id="menuFrame" src="menu.pdf"></iframe>-->
-    <div id="menuFrame" style="height: 600px;"></div>
+  <div id="menuFrame" style="height: 1200px;"></div>
 
 </body>
 </html>
