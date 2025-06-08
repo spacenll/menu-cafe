@@ -5,29 +5,40 @@
   <title>خشب كافيه</title>
   <style>
     body {
-      text-align: center;
+      margin: 0;
       font-family: Arial, sans-serif;
-      padding-top: 20%;
+      text-align: center;
       background-color: #f9f9f9;
     }
-    .welcome {
+
+    #welcome {
       font-size: 24px;
+      padding-top: 20%;
       direction: rtl;
+    }
+
+    #menuFrame {
+      display: none;
+      width: 100%;
+      height: 100vh;
+      border: none;
     }
   </style>
   <script>
-    // تأخير 1.5 ثانية ثم فتح قائمة الطعام
     window.onload = function () {
       setTimeout(function () {
-        window.location.href = "menu.pdf";
+        document.getElementById("welcome").style.display = "none";
+        document.getElementById("menuFrame").style.display = "block";
       }, 1500);
     };
   </script>
 </head>
 <body>
-  <div class="welcome">
+  <div id="welcome">
     <p>أهلاً بك في خشب كافيه</p>
     <p>Welcome to Khashab Cafe</p>
   </div>
+
+  <iframe id="menuFrame" src="menu.pdf"></iframe>
 </body>
 </html>
