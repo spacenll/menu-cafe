@@ -3,53 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>خشب كافيه</title>
-
-  <!-- ربط خط Alexandria من Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600&display=swap" rel="stylesheet">
 
   <style>
     body {
       margin: 0;
       font-family: 'Alexandria', sans-serif;
+      background-color: #fdfdfd;
+      color: #333;
       text-align: center;
-      background-color: #f9f9f9;
-      direction: rtl;
     }
 
     #welcome {
-      font-size: 28px;
-      padding-top: 20%;
+      font-size: 30px;
+      padding-top: 25%;
+      direction: rtl;
     }
 
-    #loader {
-      display: none;
-      font-size: 20px;
-      margin-top: 20px;
-    }
-
-    .progress-bar {
-      width: 60%;
-      height: 10px;
-      background-color: #ddd;
-      margin: 20px auto;
-      border-radius: 5px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      width: 0%;
-      height: 100%;
-      background-color: #795548;
-      animation: fill 1.5s forwards;
-    }
-
-    @keyframes fill {
-      to {
-        width: 100%;
-      }
-    }
-
-    #menuFrame {
+    iframe {
       display: none;
       width: 100%;
       height: 100vh;
@@ -58,40 +29,10 @@
   </style>
 
   <script>
-    // تحميل ملف PDF في الخلفية
-    let pdfLoaded = false;
-
-    const preloadPDF = () => {
-      const xhr = new XMLHttpRequest();
-      xhr.open('GET', 'menu.pdf', true);
-      xhr.responseType = 'blob';
-      xhr.onload = function () {
-        if (xhr.status === 200) {
-          const blob = new Blob([xhr.response], { type: 'application/pdf' });
-          const url = URL.createObjectURL(blob);
-          document.getElementById('menuFrame').src = url;
-          pdfLoaded = true;
-        }
-      };
-      xhr.send();
-    };
-
     window.onload = function () {
-      preloadPDF();
-
-      // عرض الترحيب أولاً
       setTimeout(() => {
         document.getElementById('welcome').style.display = 'none';
-        document.getElementById('loader').style.display = 'block';
-
-        // بعد تحميل الملف، أظهره
-        const checkLoaded = setInterval(() => {
-          if (pdfLoaded) {
-            clearInterval(checkLoaded);
-            document.getElementById('loader').style.display = 'none';
-            document.getElementById('menuFrame').style.display = 'block';
-          }
-        }, 200);
+        document.getElementById('menuFrame').style.display = 'block';
       }, 1500);
     };
   </script>
@@ -103,14 +44,7 @@
     <p>Welcome to Khashab Cafe</p>
   </div>
 
-  <div id="loader">
-    <p>جاري تحميل القائمة...</p>
-    <div class="progress-bar">
-      <div class="progress-fill"></div>
-    </div>
-  </div>
-
-  <iframe id="menuFrame"></iframe>
+  <iframe id="menuFrame" src="menu.pdf"></iframe>
 
 </body>
 </html>
