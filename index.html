@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>خشب كافيه</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js"></script>
-
   <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@600&display=swap" rel="stylesheet">
 
   <style>
@@ -21,37 +20,74 @@
       padding-top: 25%;
       direction: rtl;
     }
+
     #menuFrame {
-  display:none;
-  }
+      height: 100vh;
+    }
+
+    #mobileNotice {
+      display: none;
+      padding: 40px;
+      font-size: 22px;
+    }
+
+    button {
+      font-size: 22px;
+      padding: 10px 20px;
+      background-color: #8B5E3C;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #a06c47;
+    }
   </style>
-
-  <script>
-    window.onload = function () {
-      // إخفاء شاشة الترحيب
-      setTimeout(() => {
-        document.getElementById('welcome').style.display = 'none'
-        document.getElementById('menuFrame').style.display = 'block';
-      }, 1500);
-
-      // تضمين PDF
-      PDFObject.embed("http://spacenll.github.io/menu-cafe/menu.pdf", "#menuFrame", {
-        pdfOpenParams: {
-          view: "FitH"
-        }
-      });
-    };
-  </script>
 </head>
 <body>
 
   <div id="welcome">
-    <img src="logo.png"/>
+    <img src="logo.png" alt="شعار خشب كافيه" />
     <p>أهلاً بك في خشب كافيه</p>
     <p>Welcome to Khashab Cafe</p>
   </div>
 
-  <div id="menuFrame" style="height: 1200px;"></div>
+  <div id="mobileNotice">
+    <p>لعرض القائمة على جهازك، اضغط الزر أدناه:</p>
+    <a href="http://spacenll.github.io/menu-cafe/menu.pdf" target="_blank">
+      <button>عرض القائمة</button>
+    </a>
+  </div>
+
+  <div id="menuFrame"></div>
+
+  <script>
+    function isMobile() {
+      return /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+    }
+
+    window.onload = function () {
+      // إخفاء شاشة الترحيب
+      setTimeout(() => {
+        document.getElementById('welcome').style.display = 'none';
+
+        // كشف نوع الجهاز
+        if (isMobile()) {
+          // موبايل: أظهر زر التحميل
+          document.getElementById('mobileNotice').style.display = 'block';
+        } else {
+          // كمبيوتر: عرض PDF داخل الصفحة
+          PDFObject.embed("http://spacenll.github.io/menu-cafe/menu.pdf", "#menuFrame", {
+            pdfOpenParams: {
+              view: "FitH"
+            }
+          });
+        }
+      }, 1500);
+    };
+  </script>
 
 </body>
 </html>
