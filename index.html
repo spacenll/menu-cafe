@@ -22,27 +22,20 @@
       direction: rtl;
     }
 
-    iframe {
-      display: none;
-      width: 100%;
-      height: 100vh;
-      border: none;
-    }
+  
   </style>
 
   <script>
-    var pdf = new PDFObject({
-  url: "menu.pdf",
-  id: "menuFrame",
+   PDFObject.embed("menu.pdf", "#menuFrame", {
   pdfOpenParams: {
     view: "FitH"
   }
-}).embed("menuFrame");
+});
     
     window.onload = function () {
       setTimeout(() => {
         document.getElementById('welcome').style.display = 'none';
-        document.getElementById('menuFrame').style.display = 'block';
+      
       }, 1500);
     };
   </script>
@@ -56,7 +49,7 @@
   </div>
 
   <!--<iframe id="menuFrame" src="menu.pdf"></iframe>-->
-  <div id="menuFrame"></div>
+    <div id="menuFrame" style="height: 600px;"></div>
 
 </body>
 </html>
