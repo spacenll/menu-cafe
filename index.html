@@ -29,6 +29,14 @@
   </style>
 
   <script>
+    var pdf = new PDFObject({
+  url: "menu.pdf",
+  id: "menuFrame",
+  pdfOpenParams: {
+    view: "FitH"
+  }
+}).embed("menuFrame");
+    
     window.onload = function () {
       setTimeout(() => {
         document.getElementById('welcome').style.display = 'none';
@@ -45,7 +53,8 @@
     <p>Welcome to Khashab Cafe</p>
   </div>
 
-  <iframe id="menuFrame" src="menu.pdf"></iframe>
+  <!--<iframe id="menuFrame" src="menu.pdf"></iframe>-->
+  <div id="menuFrame"></div>
 
 </body>
 </html>
