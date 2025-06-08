@@ -39,7 +39,7 @@
       background-color: #8B5E3C;
       color: white;
       border: none;
-        padding-top: 25%;
+     
        font-family: 'Alexandria', sans-serif;
       border-radius: 10px;
       cursor: pointer;
@@ -83,6 +83,7 @@
           document.getElementById('mobileNotice').style.display = 'block';
         } else {
           // كمبيوتر: عرض PDF داخل الصفحة
+           document.getElementById('mobileNotice').style.display = 'block';
           PDFObject.embed("http://spacenll.github.io/menu-cafe/menu.pdf", "#menuFrame", {
             pdfOpenParams: {
               view: "FitH"
