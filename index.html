@@ -26,7 +26,7 @@
     }
 
     #mobileNotice {
-      display: none;
+      display: block;
       padding: 40px;
       font-size: 22px;
     }
@@ -57,6 +57,12 @@ cursor: pointer;
     <img src="logo.png" alt="شعار خشب كافيه" />
     <p>أهلاً بك في خشب كافيه</p>
     <p>Welcome to Khashab Cafe</p>
+      <div id="mobileNotice">
+ 
+    <a href="http://spacenll.github.io/menu-cafe/menu.pdf" target="_blank">
+      <button>View Menu - عرض القائمة</button>
+    </a>
+      </div>
   </div>
 
   <div id="mobileNotice">
@@ -76,15 +82,15 @@ cursor: pointer;
     window.onload = function () {
       // إخفاء شاشة الترحيب
       setTimeout(() => {
-        document.getElementById('welcome').style.display = 'none';
+        
 
         // كشف نوع الجهاز
         if (isMobile()) {
           // موبايل: أظهر زر التحميل
-          document.getElementById('mobileNotice').style.display = 'block';
+          
         } else {
           // كمبيوتر: عرض PDF داخل الصفحة
-           document.getElementById('mobileNotice').style.display = 'block';
+
           PDFObject.embed("http://spacenll.github.io/menu-cafe/menu.pdf", "#menuFrame", {
             pdfOpenParams: {
               view: "FitH"
